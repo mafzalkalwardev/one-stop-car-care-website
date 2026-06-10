@@ -1,1237 +1,1663 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>One Stop Car Care — Doorstep Car Services</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --green-dark:  #0D2B1D;
-      --green:       #1B4332;
-      --green-mid:   #2D6A4F;
-      --green-light: #3A8A63;
-      --gold:        #C9A84C;
-      --gold-light:  #E2C97E;
-      --white:       #FFFFFF;
-      --off-white:   #F7F5F0;
-      --text:        #1A1A1A;
-      --text-muted:  #5C6B60;
-      --border:      #D4D9D4;
-    }
-
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--white);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    /* ────── NAV ────── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(13, 43, 29, 0.97);
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 6%;
-      height: 68px;
-      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    .nav-logo-shield {
-      width: 38px;
-      height: 38px;
-    }
-
-    .nav-logo-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-
-    .nav-logo-text span:first-child {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem;
-      color: var(--white);
-      font-weight: 700;
-    }
-
-    .nav-logo-text span:last-child {
-      font-size: 0.6rem;
-      color: var(--gold);
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: rgba(255,255,255,0.75);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--gold); }
-
-    .nav-cta {
-      background: var(--gold) !important;
-      color: var(--green-dark) !important;
-      padding: 9px 22px;
-      border-radius: 4px;
-      font-weight: 700 !important;
-      font-size: 0.8rem !important;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .nav-cta:hover { background: var(--gold-light) !important; color: var(--green-dark) !important; }
-
-    /* ────── HERO ────── */
-    .hero {
-      min-height: 100vh;
-      background: var(--green-dark);
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      padding: 100px 6% 80px;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 80% at 70% 50%, rgba(45,106,79,0.25) 0%, transparent 70%),
-        radial-gradient(ellipse 30% 40% at 90% 20%, rgba(201,168,76,0.08) 0%, transparent 60%);
-    }
-
-    .hero-grid {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-
-    .hero-eyebrow::before {
-      content: '';
-      display: block;
-      width: 28px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.6rem, 5vw, 4rem);
-      color: var(--white);
-      line-height: 1.15;
-      margin-bottom: 24px;
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      color: var(--gold);
-    }
-
-    .hero-sub {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.75;
-      margin-bottom: 36px;
-      max-width: 440px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--gold);
-      color: var(--green-dark);
-      padding: 14px 28px;
-      border-radius: 4px;
-      font-weight: 700;
-      font-size: 0.85rem;
-      text-decoration: none;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      transition: background 0.2s, transform 0.15s;
-    }
-
-    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
-
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: transparent;
-      color: var(--white);
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 14px 28px;
-      border-radius: 4px;
-      font-size: 0.85rem;
-      text-decoration: none;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-
-    .hero-stats {
-      display: flex;
-      gap: 36px;
-      margin-top: 48px;
-      padding-top: 36px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .hero-stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      color: var(--gold);
-      display: block;
-    }
-
-    .hero-stat-label {
-      font-size: 0.72rem;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    /* Hero right: visual card */
-    .hero-visual {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .hero-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(201,168,76,0.2);
-      border-radius: 12px;
-      padding: 28px 32px;
-      backdrop-filter: blur(4px);
-    }
-
-    .hero-card-title {
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 16px;
-      font-weight: 600;
-    }
-
-    .hero-card-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      font-size: 0.88rem;
-    }
-
-    .hero-card-row:last-child { border-bottom: none; }
-
-    .hero-card-service { color: rgba(255,255,255,0.75); }
-
-    .hero-card-price { color: var(--gold); font-weight: 600; }
-
-    .trust-row {
-      display: flex;
-      gap: 12px;
-    }
-
-    .trust-badge {
-      flex: 1;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(201,168,76,0.15);
-      border-radius: 10px;
-      padding: 18px 14px;
-      text-align: center;
-    }
-
-    .trust-badge-icon {
-      font-size: 1.5rem;
-      margin-bottom: 6px;
-    }
-
-    .trust-badge-label {
-      font-size: 0.72rem;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.4;
-    }
-
-    /* ────── SECTION BASE ────── */
-    section { padding: 96px 6%; }
-
-    .section-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--green-mid);
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .section-tag::before {
-      content: '';
-      width: 20px; height: 2px;
-      background: var(--gold);
-      display: block;
-    }
-
-    .section-heading {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      color: var(--green-dark);
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
-
-    .section-sub {
-      font-size: 1rem;
-      color: var(--text-muted);
-      max-width: 520px;
-      line-height: 1.75;
-    }
-
-    .section-head { max-width: 1200px; margin: 0 auto 56px; }
-
-    .inner { max-width: 1200px; margin: 0 auto; }
-
-    /* ────── HOW IT WORKS ────── */
-    #how { background: var(--off-white); }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 0;
-      position: relative;
-    }
-
-    .steps::before {
-      content: '';
-      position: absolute;
-      top: 28px;
-      left: calc(100% / 12);
-      right: calc(100% / 12);
-      height: 2px;
-      background: linear-gradient(90deg, var(--gold), var(--green-light));
-      z-index: 0;
-    }
-
-    .step {
-      text-align: center;
-      padding: 0 12px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .step-num {
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      background: var(--green);
-      color: var(--gold);
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 16px;
-      border: 3px solid var(--off-white);
-      box-shadow: 0 0 0 3px var(--gold);
-    }
-
-    .step-label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--green-dark);
-      line-height: 1.4;
-    }
-
-    /* ────── SERVICES ────── */
-    #services { background: var(--white); }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 24px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .service-card {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 32px 28px;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
-      background: var(--white);
-    }
-
-    .service-card::after {
-      content: '';
-      position: absolute;
-      left: 0; top: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(180deg, var(--gold), var(--green-light));
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
-
-    .service-card:hover {
-      border-color: var(--green-light);
-      box-shadow: 0 12px 40px rgba(27,67,50,0.12);
-      transform: translateY(-3px);
-    }
-
-    .service-card:hover::after { opacity: 1; }
-
-    .service-icon-wrap {
-      width: 52px;
-      height: 52px;
-      background: var(--off-white);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 18px;
-    }
-
-    .service-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      color: var(--green-dark);
-      margin-bottom: 8px;
-    }
-
-    .service-desc {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-      margin-bottom: 16px;
-    }
-
-    .service-price {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--green-mid);
-      margin-bottom: 20px;
-    }
-
-    .service-price span {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      font-weight: 400;
-      margin-left: 4px;
-    }
-
-    .btn-book {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--green);
-      color: var(--white);
-      padding: 10px 20px;
-      border-radius: 4px;
-      text-decoration: none;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      transition: background 0.2s;
-    }
-
-    .btn-book:hover { background: var(--green-mid); }
-
-    /* ────── WHY US ────── */
-    #why {
-      background: var(--green-dark);
-      color: var(--white);
-    }
-
-    #why .section-heading { color: var(--white); }
-    #why .section-sub { color: rgba(255,255,255,0.6); }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .why-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(201,168,76,0.18);
-      border-radius: 12px;
-      padding: 32px 28px;
-      transition: background 0.2s, border-color 0.2s;
-    }
-
-    .why-card:hover {
-      background: rgba(255,255,255,0.07);
-      border-color: rgba(201,168,76,0.4);
-    }
-
-    .why-icon {
-      font-size: 2rem;
-      margin-bottom: 14px;
-      display: block;
-    }
-
-    .why-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      color: var(--gold);
-      margin-bottom: 8px;
-    }
-
-    .why-card p {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.65;
-    }
-
-    /* ────── BOOKING ────── */
-    #booking { background: var(--off-white); }
-
-    .booking-layout {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 60px;
-      max-width: 1100px;
-      margin: 0 auto;
-      align-items: start;
-    }
-
-    .booking-info h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      color: var(--green-dark);
-      margin-bottom: 16px;
-    }
-
-    .booking-info p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      line-height: 1.75;
-      margin-bottom: 32px;
-    }
-
-    .booking-contact-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .booking-contact-item:last-child { border: none; }
-
-    .bci-icon {
-      width: 40px;
-      height: 40px;
-      background: var(--green);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-
-    .bci-label {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 2px;
-    }
-
-    .bci-value {
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: var(--green-dark);
-    }
-
-    .booking-form-wrap {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px 36px;
-      box-shadow: 0 8px 32px rgba(27,67,50,0.07);
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .fg {
-      margin-bottom: 18px;
-    }
-
-    .fg label {
-      display: block;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--green-dark);
-      margin-bottom: 6px;
-    }
-
-    .fg input, .fg select, .fg textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      color: var(--text);
-      background: var(--white);
-      outline: none;
-      transition: border-color 0.2s;
-      -webkit-appearance: none;
-    }
-
-    .fg input:focus, .fg select:focus, .fg textarea:focus {
-      border-color: var(--green-mid);
-      box-shadow: 0 0 0 3px rgba(45,106,79,0.08);
-    }
-
-    .fg textarea { resize: vertical; min-height: 80px; }
-
-    .btn-submit {
-      width: 100%;
-      background: var(--green);
-      color: var(--white);
-      border: none;
-      padding: 15px;
-      border-radius: 6px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 700;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
-      margin-top: 4px;
-    }
-
-    .btn-submit:hover { background: var(--green-mid); transform: translateY(-1px); }
-
-    /* ────── FOOTER ────── */
-    footer {
-      background: var(--green-dark);
-      padding: 64px 6% 32px;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px;
-      max-width: 1200px;
-      margin: 0 auto 48px;
-    }
-
-    .footer-brand p {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.75;
-      margin-top: 16px;
-      max-width: 280px;
-    }
-
-    .footer-col h4 {
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 700;
-      margin-bottom: 18px;
-    }
-
-    .footer-col ul { list-style: none; }
-
-    .footer-col li {
-      margin-bottom: 10px;
-    }
-
-    .footer-col a {
-      color: rgba(255,255,255,0.55);
-      text-decoration: none;
-      font-size: 0.85rem;
-      transition: color 0.2s;
-    }
-
-    .footer-col a:hover { color: var(--gold); }
-
-    .footer-divider {
-      border: none;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      max-width: 1200px;
-      margin: 0 auto 24px;
-    }
-
-    .footer-bottom {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .footer-bottom p {
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.35);
-    }
-
-    /* ────── SUCCESS TOAST ────── */
-    .toast {
-      position: fixed;
-      bottom: 28px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: var(--green);
-      color: var(--white);
-      border: 1px solid var(--gold);
-      padding: 14px 28px;
-      border-radius: 8px;
-      font-size: 0.88rem;
-      font-weight: 500;
-      opacity: 0;
-      transition: opacity 0.3s, transform 0.3s;
-      z-index: 9999;
-      pointer-events: none;
-      white-space: nowrap;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* ────── WHATSAPP FLOAT ────── */
-    .wa-float {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      background: #25D366;
-      color: white;
-      width: 56px;
-      height: 56px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      text-decoration: none;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-      z-index: 90;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .wa-float:hover {
-      transform: scale(1.08);
-      box-shadow: 0 6px 28px rgba(37,211,102,0.55);
-    }
-
-    /* ────── MOBILE ────── */
-    @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-visual { display: none; }
-      .steps { grid-template-columns: repeat(3, 1fr); gap: 24px; }
-      .steps::before { display: none; }
-      .why-grid { grid-template-columns: 1fr 1fr; }
-      .booking-layout { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      nav .nav-links { display: none; }
-    }
-
-    @media (max-width: 600px) {
-      section { padding: 72px 5%; }
-      .form-row { grid-template-columns: 1fr; }
-      .why-grid { grid-template-columns: 1fr; }
-      .hero-stats { gap: 24px; flex-wrap: wrap; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .steps { grid-template-columns: repeat(2, 1fr); }
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>One Stop Car Care – Inspect. Protect. Detail.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+/* =============================================
+   CSS CUSTOM PROPERTIES
+   ============================================= */
+:root {
+  --primary: #0D2B1D;
+  --secondary: #1B4332;
+  --accent: #C9A84C;
+  --accent-light: #E2C47A;
+  --accent-dark: #A07830;
+  --bg: #08150F;
+  --bg2: #0A1A12;
+  --card-bg: rgba(255,255,255,0.04);
+  --card-border: rgba(255,255,255,0.08);
+  --text: #FFFFFF;
+  --muted: rgba(255,255,255,0.6);
+  --muted2: rgba(255,255,255,0.35);
+  --green-glow: rgba(27,67,50,0.6);
+  --gold-glow: rgba(201,168,76,0.15);
+  --radius-sm: 12px;
+  --radius: 18px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --shadow: 0 8px 40px rgba(0,0,0,0.5);
+  --shadow-gold: 0 0 40px rgba(201,168,76,0.12);
+  --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =============================================
+   RESET & BASE
+   ============================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+button { cursor: pointer; border: none; outline: none; font-family: inherit; }
+
+/* =============================================
+   UTILITY
+   ============================================= */
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 100px 0; }
+.section-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--accent);
+  background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2);
+  padding: 6px 16px; border-radius: 100px; margin-bottom: 20px;
+}
+.section-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(32px, 5vw, 52px); font-weight: 800;
+  line-height: 1.15; margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+.section-subtitle {
+  font-size: 17px; color: var(--muted); max-width: 560px; line-height: 1.7;
+}
+.text-accent { color: var(--accent); }
+.text-center { text-align: center; }
+.text-center .section-subtitle { margin: 0 auto; }
+
+/* Fade-in animation */
+.fade-up {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* =============================================
+   SCROLLBAR
+   ============================================= */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 3px; }
+
+/* =============================================
+   NAVBAR
+   ============================================= */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 16px 0;
+  transition: var(--transition);
+}
+.navbar.scrolled {
+  background: rgba(8,21,15,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 12px 0;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.4);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+}
+.nav-logo-mark {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  border: 1.5px solid rgba(201,168,76,0.4);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; color: var(--accent);
+}
+.nav-logo-text {
+  display: flex; flex-direction: column; line-height: 1;
+}
+.nav-logo-text span:first-child {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800; font-size: 15px; color: var(--text);
+  letter-spacing: -0.2px;
+}
+.nav-logo-text span:last-child {
+  font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--accent); font-weight: 500;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 4px;
+}
+.nav-links a {
+  font-size: 13.5px; font-weight: 500; color: var(--muted);
+  padding: 7px 14px; border-radius: 8px;
+  transition: var(--transition);
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--text); background: rgba(255,255,255,0.06);
+}
+.nav-cta {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: var(--primary) !important;
+  font-weight: 700 !important;
+  padding: 9px 22px !important;
+  border-radius: 10px !important;
+}
+.nav-cta:hover {
+  background: linear-gradient(135deg, var(--accent-light), var(--accent)) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(201,168,76,0.3);
+}
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; padding: 6px; cursor: pointer;
+}
+.hamburger span {
+  display: block; width: 22px; height: 2px;
+  background: var(--text); border-radius: 2px;
+  transition: var(--transition);
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-menu {
+  display: none; position: fixed; top: 68px; left: 0; right: 0;
+  background: rgba(8,21,15,0.97); backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 24px; z-index: 999;
+  flex-direction: column; gap: 4px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: 15px; font-weight: 500; color: var(--muted);
+  padding: 12px 16px; border-radius: 10px;
+  transition: var(--transition);
+}
+.mobile-menu a:hover { background: rgba(255,255,255,0.06); color: var(--text); }
+.mobile-menu .nav-cta { margin-top: 8px; text-align: center; color: var(--primary) !important; }
+
+/* =============================================
+   HERO
+   ============================================= */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex; align-items: center;
+  padding: 120px 0 80px;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 60% 40%, rgba(27,67,50,0.45) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 60%),
+    var(--bg);
+}
+.hero-grid-lines {
+  position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+.hero-deco-circle {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(201,168,76,0.12);
+  animation: slowSpin 20s linear infinite;
+}
+.hero-deco-circle:nth-child(1) {
+  width: 500px; height: 500px;
+  top: 50%; right: 5%; transform: translate(0, -50%);
+}
+.hero-deco-circle:nth-child(2) {
+  width: 350px; height: 350px;
+  top: 50%; right: 12%; transform: translate(0, -50%);
+  animation-direction: reverse; animation-duration: 14s;
+  border-color: rgba(27,67,50,0.35);
+}
+@keyframes slowSpin { from { transform: translate(0,-50%) rotate(0deg); } to { transform: translate(0,-50%) rotate(360deg); } }
+
+.hero-inner {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--accent);
+  background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2);
+  padding: 6px 14px; border-radius: 100px; margin-bottom: 28px;
+}
+.hero-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(40px, 5.5vw, 72px);
+  font-weight: 800; line-height: 1.08; letter-spacing: -1.5px;
+  margin-bottom: 24px;
+}
+.hero-title .line-accent {
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-desc {
+  font-size: 17px; color: var(--muted); max-width: 480px;
+  line-height: 1.75; margin-bottom: 40px;
+}
+.hero-actions {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  margin-bottom: 56px;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: var(--primary); font-weight: 700; font-size: 14.5px;
+  padding: 14px 28px; border-radius: var(--radius-sm);
+  transition: var(--transition); letter-spacing: 0.2px;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(201,168,76,0.35);
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+}
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.06); color: var(--text);
+  font-weight: 600; font-size: 14.5px;
+  padding: 14px 28px; border-radius: var(--radius-sm);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: var(--transition);
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+.hero-trust {
+  display: flex; align-items: center; gap: 16px;
+}
+.trust-avatars {
+  display: flex;
+}
+.trust-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 2px solid var(--bg2);
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--accent); font-weight: 700;
+  margin-left: -8px;
+}
+.trust-avatar:first-child { margin-left: 0; }
+.trust-text { font-size: 13px; }
+.trust-text strong { color: var(--accent); font-weight: 700; }
+.trust-text span { color: var(--muted); display: block; font-size: 12px; }
+
+/* Hero right panel */
+.hero-visual {
+  position: relative; display: flex; flex-direction: column; gap: 16px;
+}
+.hero-main-card {
+  background: rgba(27,67,50,0.25);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.hero-card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px;
+}
+.hero-card-badge {
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: #22c55e;
+  background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.2);
+  padding: 4px 10px; border-radius: 100px;
+  display: flex; align-items: center; gap: 5px;
+}
+.badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #22c55e;
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.hero-card-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; font-weight: 700; color: var(--text);
+}
+.services-grid-mini {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+}
+.service-mini {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius-sm);
+  padding: 14px; transition: var(--transition);
+}
+.service-mini:hover { border-color: rgba(201,168,76,0.25); background: rgba(201,168,76,0.05); }
+.service-mini i { color: var(--accent); font-size: 18px; margin-bottom: 8px; }
+.service-mini p { font-size: 12px; color: var(--text); font-weight: 600; }
+.service-mini span { font-size: 11px; color: var(--muted); }
+
+.hero-stats-row {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+}
+.hero-stat {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius-sm);
+  padding: 20px 16px; text-align: center;
+  transition: var(--transition);
+}
+.hero-stat:hover { border-color: rgba(201,168,76,0.2); }
+.hero-stat-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 26px; font-weight: 800; color: var(--accent);
+  line-height: 1;
+}
+.hero-stat-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+.floating-card {
+  position: absolute;
+  background: rgba(13,43,29,0.9); backdrop-filter: blur(16px);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: var(--radius-sm); padding: 12px 16px;
+  display: flex; align-items: center; gap: 10px;
+  box-shadow: var(--shadow);
+  animation: floatY 4s ease-in-out infinite;
+}
+.floating-card:nth-child(2) { animation-delay: -2s; }
+@keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.floating-card-left { top: 20%; left: -20px; }
+.floating-card-right { bottom: 15%; right: -20px; }
+.floating-icon { width: 32px; height: 32px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--primary);
+}
+.floating-text p { font-size: 12px; font-weight: 700; }
+.floating-text span { font-size: 11px; color: var(--muted); }
+
+/* =============================================
+   STATS BAR
+   ============================================= */
+.stats-bar {
+  padding: 56px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.stats-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.stat-item {
+  background: var(--bg); padding: 32px 24px; text-align: center;
+  transition: var(--transition);
+}
+.stat-item:hover { background: rgba(27,67,50,0.2); }
+.stat-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 42px; font-weight: 800; line-height: 1;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.stat-label { font-size: 13px; color: var(--muted); margin-top: 8px; font-weight: 500; }
+
+/* =============================================
+   SERVICES
+   ============================================= */
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  margin-top: 56px;
+}
+.service-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  position: relative; overflow: hidden;
+  transition: var(--transition);
+  cursor: default;
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0; transition: var(--transition);
+}
+.service-card:hover { border-color: rgba(201,168,76,0.2); transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.4); }
+.service-card:hover::before { opacity: 1; }
+.service-card.featured {
+  background: linear-gradient(135deg, rgba(27,67,50,0.4), rgba(13,43,29,0.6));
+  border-color: rgba(201,168,76,0.25);
+}
+.service-badge {
+  position: absolute; top: 20px; right: 20px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--primary); background: var(--accent);
+  padding: 4px 10px; border-radius: 100px;
+}
+.service-icon-wrap {
+  width: 56px; height: 56px; border-radius: 14px;
+  background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; color: var(--accent); margin-bottom: 24px;
+  transition: var(--transition);
+}
+.service-card:hover .service-icon-wrap {
+  background: rgba(201,168,76,0.18); transform: scale(1.05);
+}
+.service-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px; font-weight: 700; margin-bottom: 10px;
+}
+.service-desc { font-size: 14px; color: var(--muted); margin-bottom: 24px; line-height: 1.65; }
+.service-features { margin-bottom: 28px; display: flex; flex-direction: column; gap: 8px; }
+.service-feature {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13.5px; color: rgba(255,255,255,0.75);
+}
+.service-feature i { color: var(--accent); font-size: 12px; }
+.service-price {
+  display: flex; align-items: baseline; gap: 4px;
+  padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.07);
+}
+.service-price .from { font-size: 12px; color: var(--muted); }
+.service-price .amount {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 28px; font-weight: 800; color: var(--accent);
+}
+.service-price .unit { font-size: 13px; color: var(--muted); }
+
+/* =============================================
+   COMPARISON TABLE
+   ============================================= */
+.comparison-section { background: var(--bg2); }
+.comparison-grid {
+  display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 0;
+  margin-top: 56px; border-radius: var(--radius-lg); overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.comp-header-cell {
+  padding: 28px 24px;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  border-right: 1px solid rgba(255,255,255,0.05);
+}
+.comp-header-cell:last-child { border-right: none; }
+.comp-brand {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px; font-weight: 700; margin-bottom: 4px;
+}
+.comp-sub { font-size: 12px; color: var(--muted); }
+.comp-header-cell.highlight-col {
+  background: rgba(27,67,50,0.35);
+  border-top: 2px solid var(--accent);
+}
+.comp-header-cell.highlight-col .comp-brand { color: var(--accent); }
+.comp-row {
+  display: contents;
+}
+.comp-cell {
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-right: 1px solid rgba(255,255,255,0.04);
+  display: flex; align-items: center;
+  font-size: 13.5px;
+  transition: var(--transition);
+}
+.comp-cell:last-child { border-right: none; }
+.comp-cell.feature-label { color: var(--muted); font-weight: 500; }
+.comp-cell.check i { color: #22c55e; }
+.comp-cell.cross i { color: rgba(255,255,255,0.2); }
+.comp-cell.highlight-col { background: rgba(27,67,50,0.12); }
+.comp-row:hover .comp-cell { background: rgba(255,255,255,0.02); }
+.comp-row:hover .comp-cell.highlight-col { background: rgba(27,67,50,0.2); }
+.comp-cell:not(.feature-label) { justify-content: center; }
+
+/* =============================================
+   WHY CHOOSE US
+   ============================================= */
+.why-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  margin-top: 56px;
+}
+.why-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  transition: var(--transition);
+  position: relative; overflow: hidden;
+}
+.why-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60px;
+  background: linear-gradient(to top, rgba(27,67,50,0.08), transparent);
+  opacity: 0; transition: var(--transition);
+}
+.why-card:hover { border-color: rgba(201,168,76,0.2); transform: translateY(-4px); }
+.why-card:hover::after { opacity: 1; }
+.why-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; color: var(--accent); margin-bottom: 20px;
+  transition: var(--transition);
+}
+.why-card:hover .why-icon { background: rgba(201,168,76,0.15); transform: scale(1.05); }
+.why-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 17px; font-weight: 700; margin-bottom: 10px;
+}
+.why-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+/* =============================================
+   TEAM
+   ============================================= */
+.team-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  margin-top: 56px;
+}
+.team-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px; text-align: center;
+  transition: var(--transition);
+}
+.team-card:hover { border-color: rgba(201,168,76,0.2); transform: translateY(-5px); box-shadow: var(--shadow); }
+.team-avatar {
+  width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 16px;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  border: 2px solid rgba(201,168,76,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 26px; font-weight: 800; color: var(--accent);
+}
+.team-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px; font-weight: 700; margin-bottom: 4px;
+}
+.team-role {
+  font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--accent); margin-bottom: 8px;
+}
+.team-bio { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+.team-social { display: flex; justify-content: center; gap: 8px; }
+.team-social a {
+  width: 30px; height: 30px; border-radius: 8px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: var(--muted);
+  transition: var(--transition);
+}
+.team-social a:hover { color: var(--accent); border-color: rgba(201,168,76,0.3); background: rgba(201,168,76,0.06); }
+
+/* =============================================
+   TIMELINE
+   ============================================= */
+.timeline-section { background: var(--bg2); overflow: hidden; }
+.timeline-track {
+  position: relative; margin-top: 56px;
+  padding: 16px 0 32px;
+}
+.timeline-line {
+  position: absolute; top: 40px; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.15), rgba(201,168,76,0.4), rgba(201,168,76,0.15), transparent);
+}
+.timeline-steps {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px;
+  position: relative;
+}
+.timeline-step { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.timeline-node {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  border: 2px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: var(--accent); z-index: 1;
+  box-shadow: 0 0 20px rgba(201,168,76,0.2);
+  flex-shrink: 0;
+}
+.timeline-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  padding: 20px; text-align: center;
+  transition: var(--transition); width: 100%;
+}
+.timeline-card:hover { border-color: rgba(201,168,76,0.2); }
+.timeline-year {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.5px; color: var(--accent); margin-bottom: 6px;
+}
+.timeline-event {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; font-weight: 700; margin-bottom: 6px;
+}
+.timeline-detail { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+/* =============================================
+   REVENUE / DASHBOARD
+   ============================================= */
+.dashboard-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  margin-top: 56px;
+}
+.kpi-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  transition: var(--transition);
+}
+.kpi-card:hover { border-color: rgba(201,168,76,0.2); transform: translateY(-3px); }
+.kpi-label { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+.kpi-value {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 32px; font-weight: 800; line-height: 1;
+  color: var(--accent); margin-bottom: 12px;
+}
+.kpi-progress { height: 4px; background: rgba(255,255,255,0.08); border-radius: 100px; overflow: hidden; }
+.kpi-bar { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--accent-dark), var(--accent)); }
+.kpi-change { font-size: 12px; color: #22c55e; margin-top: 8px; }
+.kpi-change.negative { color: #ef4444; }
+
+.revenue-large {
+  grid-column: span 2;
+  background: linear-gradient(135deg, rgba(27,67,50,0.35), rgba(13,43,29,0.5));
+  border-color: rgba(201,168,76,0.2);
+}
+.revenue-visual {
+  display: flex; gap: 4px; align-items: flex-end;
+  height: 80px; margin-top: 20px;
+}
+.revenue-bar-item {
+  flex: 1; border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-dark) 100%);
+  opacity: 0.7; transition: var(--transition);
+}
+.revenue-bar-item:hover { opacity: 1; }
+.revenue-bar-item.active { opacity: 1; }
+.revenue-months {
+  display: flex; gap: 4px; margin-top: 6px;
+}
+.revenue-months span {
+  flex: 1; text-align: center; font-size: 10px; color: var(--muted);
+}
+
+/* =============================================
+   CONTACT
+   ============================================= */
+.contact-section { background: var(--bg2); }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1.5fr; gap: 56px;
+  margin-top: 56px; align-items: start;
+}
+.contact-info { display: flex; flex-direction: column; gap: 28px; }
+.contact-info-item {
+  display: flex; align-items: flex-start; gap: 16px;
+}
+.contact-info-icon {
+  width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+  background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; color: var(--accent);
+}
+.contact-info-text p { font-size: 13px; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+.contact-info-text strong { font-size: 15px; font-weight: 600; display: block; margin-top: 2px; }
+
+.contact-form-wrap {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.form-group { position: relative; margin-bottom: 20px; }
+.form-group label {
+  display: block; font-size: 12px; font-weight: 600;
+  color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-sm); padding: 13px 16px;
+  color: var(--text); font-family: inherit; font-size: 14px;
+  transition: var(--transition); outline: none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: rgba(201,168,76,0.4);
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.08);
+}
+.form-group select option { background: var(--primary); }
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-submit {
+  width: 100%; background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: var(--primary); font-weight: 700; font-size: 15px;
+  padding: 15px 32px; border-radius: var(--radius-sm);
+  transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.form-submit:hover {
+  transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201,168,76,0.3);
+  background: linear-gradient(135deg, var(--accent-light), var(--accent));
+}
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer {
+  background: var(--primary);
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 72px 0 32px;
+}
+.footer-top {
+  display: grid; grid-template-columns: 1.8fr repeat(3, 1fr); gap: 48px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.footer-brand p {
+  font-size: 14px; color: var(--muted); line-height: 1.7; margin: 16px 0 24px;
+  max-width: 280px;
+}
+.footer-social { display: flex; gap: 8px; }
+.footer-social a {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: var(--muted); transition: var(--transition);
+}
+.footer-social a:hover { color: var(--accent); border-color: rgba(201,168,76,0.3); background: rgba(201,168,76,0.06); }
+.footer-col-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.5px; color: var(--text); margin-bottom: 20px;
+}
+.footer-links { display: flex; flex-direction: column; gap: 10px; }
+.footer-links a {
+  font-size: 14px; color: var(--muted); transition: var(--transition);
+  display: flex; align-items: center; gap: 6px;
+}
+.footer-links a:hover { color: var(--accent); padding-left: 4px; }
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 32px; flex-wrap: wrap; gap: 16px;
+}
+.footer-bottom p { font-size: 13px; color: var(--muted2); }
+.footer-bottom-links { display: flex; gap: 24px; }
+.footer-bottom-links a { font-size: 13px; color: var(--muted2); transition: var(--transition); }
+.footer-bottom-links a:hover { color: var(--muted); }
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+  .hero-visual { display: none; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
+  .revenue-large { grid-column: span 2; }
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .timeline-steps { grid-template-columns: repeat(3, 1fr); }
+  .comparison-grid { grid-template-columns: 1.2fr repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .section { padding: 72px 0; }
+  .hero { padding: 100px 0 60px; }
+  .hero-title { font-size: 38px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .dashboard-grid { grid-template-columns: 1fr; }
+  .revenue-large { grid-column: span 1; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .timeline-steps { grid-template-columns: repeat(2, 1fr); }
+  .timeline-line { display: none; }
+  .comparison-grid { overflow-x: auto; min-width: 600px; }
+  .comparison-outer { overflow-x: auto; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-stats-row { grid-template-columns: repeat(3, 1fr); }
+  .footer-top { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .team-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .timeline-steps { grid-template-columns: 1fr; }
+  .hero-actions { flex-direction: column; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+</style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<nav>
-  <a href="#" class="nav-logo">
-    <svg class="nav-logo-shield" viewBox="0 0 38 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M19 2L4 8v14c0 9.4 6.4 18.2 15 20.8C27.6 40.2 34 31.4 34 22V8L19 2z" fill="#2D6A4F" stroke="#C9A84C" stroke-width="1.5"/>
-      <path d="M12 22l5 5 9-10" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <div class="nav-logo-text">
-      <span>One Stop</span>
-      <span>Car Care</span>
+<!-- ==================== NAVBAR ==================== -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-mark"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="nav-logo-text">
+          <span>One Stop Car Care</span>
+          <span>Inspect · Protect · Detail</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why-us">Why Us</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#timeline">Journey</a></li>
+        <li><a href="#revenue">Business</a></li>
+        <li><a href="#contact" class="nav-cta">Book Now</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#how">How It Works</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#why">Why Us</a></li>
-    <li><a href="#booking" class="nav-cta">Book Now</a></li>
-  </ul>
+  </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services">Services</a>
+  <a href="#why-us">Why Us</a>
+  <a href="#team">Team</a>
+  <a href="#timeline">Journey</a>
+  <a href="#revenue">Business</a>
+  <a href="#contact" class="nav-cta">Book Now</a>
+</div>
 
-<!-- ── HERO ── -->
+<!-- ==================== HERO ==================== -->
 <section class="hero" id="home">
-  <div class="hero-grid">
-    <div class="hero-left">
-      <div class="hero-eyebrow">Doorstep Car Care — Rawalpindi & Islamabad</div>
-      <h1>Your Car Deserves<br><em>Expert Care</em><br>At Your Door.</h1>
-      <p class="hero-sub">Inspection, detailing, PPF & full wash — all performed at your home or office. No workshop trip. No hassle. Just results.</p>
-      <div class="hero-actions">
-        <a href="https://wa.me/923001234567?text=Hello%20One%20Stop%20Car%20Care%2C%20I%20want%20to%20book%20a%20service" class="btn-primary" target="_blank">
-          📱 Book on WhatsApp
-        </a>
-        <a href="#services" class="btn-outline">See Services</a>
-      </div>
-      <div class="hero-stats">
-        <div>
-          <span class="hero-stat-num">100%</span>
-          <span class="hero-stat-label">Satisfaction<br>Guarantee</span>
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-deco-circle"></div>
+  <div class="hero-deco-circle"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left fade-up">
+        <div class="hero-eyebrow"><i class="fa-solid fa-star"></i> Pakistan's Premier Auto Care</div>
+        <h1 class="hero-title">
+          Your Vehicle<br/>Deserves<br/><span class="line-accent">Expert Care</span>
+        </h1>
+        <p class="hero-desc">
+          One Stop Car Care delivers comprehensive automotive services — from precision inspection and advanced protection coatings to showroom-grade detailing. One destination, unmatched standards.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">
+            <i class="fa-solid fa-calendar-check"></i> Book a Service
+          </a>
+          <a href="#services" class="btn-secondary">
+            <i class="fa-solid fa-grid-2"></i> Explore Services
+          </a>
         </div>
-        <div>
-          <span class="hero-stat-num">30 min</span>
-          <span class="hero-stat-label">Response<br>Time</span>
-        </div>
-        <div>
-          <span class="hero-stat-num">5+</span>
-          <span class="hero-stat-label">Services<br>Available</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-visual">
-      <div class="hero-card">
-        <div class="hero-card-title">Our Services &amp; Pricing</div>
-        <div class="hero-card-row">
-          <span class="hero-card-service">🧼 Complete Car Wash</span>
-          <span class="hero-card-price">Rs 800–1,500</span>
-        </div>
-        <div class="hero-card-row">
-          <span class="hero-card-service">✨ Detailing</span>
-          <span class="hero-card-price">Rs 5,000–15,000</span>
-        </div>
-        <div class="hero-card-row">
-          <span class="hero-card-service">🛡️ PPF (Paint Protection)</span>
-          <span class="hero-card-price">Rs 30,000–80,000</span>
-        </div>
-        <div class="hero-card-row">
-          <span class="hero-card-service">🔧 Car Inspection</span>
-          <span class="hero-card-price">Rs 1,000–2,000</span>
-        </div>
-        <div class="hero-card-row">
-          <span class="hero-card-service">🤝 Used Car Package</span>
-          <span class="hero-card-price">Rs 8,000–20,000</span>
+        <div class="hero-trust">
+          <div class="trust-avatars">
+            <div class="trust-avatar">AK</div>
+            <div class="trust-avatar">MR</div>
+            <div class="trust-avatar">SA</div>
+            <div class="trust-avatar">ZH</div>
+          </div>
+          <div class="trust-text">
+            <strong>1,200+ Happy Clients</strong>
+            <span>Rated 4.9/5 across all services</span>
+          </div>
         </div>
       </div>
-      <div class="trust-row">
-        <div class="trust-badge">
-          <div class="trust-badge-icon">📋</div>
-          <div class="trust-badge-label">Trusted<br>Reports</div>
+      <div class="hero-visual">
+        <div class="floating-card floating-card-left">
+          <div class="floating-icon"><i class="fa-solid fa-shield-check"></i></div>
+          <div class="floating-text"><p>Ceramic Coated</p><span>Just finished</span></div>
         </div>
-        <div class="trust-badge">
-          <div class="trust-badge-icon">🏠</div>
-          <div class="trust-badge-label">Doorstep<br>Service</div>
+        <div class="hero-main-card">
+          <div class="hero-card-header">
+            <div class="hero-card-title">Active Services Today</div>
+            <div class="hero-card-badge"><div class="badge-dot"></div> Live</div>
+          </div>
+          <div class="services-grid-mini">
+            <div class="service-mini">
+              <i class="fa-solid fa-car-wash"></i>
+              <p>Detailing</p><span>3 in progress</span>
+            </div>
+            <div class="service-mini">
+              <i class="fa-solid fa-shield-halved"></i>
+              <p>Ceramic</p><span>2 in progress</span>
+            </div>
+            <div class="service-mini">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <p>Inspection</p><span>4 scheduled</span>
+            </div>
+            <div class="service-mini">
+              <i class="fa-solid fa-spray-can-sparkles"></i>
+              <p>PPF</p><span>1 in progress</span>
+            </div>
+          </div>
         </div>
-        <div class="trust-badge">
-          <div class="trust-badge-icon">⭐</div>
-          <div class="trust-badge-label">Quality<br>Guarantee</div>
+        <div class="hero-stats-row">
+          <div class="hero-stat">
+            <div class="hero-stat-num">1.2K+</div>
+            <div class="hero-stat-label">Vehicles Served</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">98%</div>
+            <div class="hero-stat-label">Satisfaction Rate</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">5★</div>
+            <div class="hero-stat-label">Average Rating</div>
+          </div>
+        </div>
+        <div class="floating-card floating-card-right">
+          <div class="floating-icon"><i class="fa-solid fa-star"></i></div>
+          <div class="floating-text"><p>5-Star Review</p><span>Just received</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── HOW IT WORKS ── -->
-<section id="how">
-  <div class="section-head inner">
-    <div class="section-tag">Process</div>
-    <h2 class="section-heading">Six Steps to a Spotless Car</h2>
-    <p class="section-sub">From your first message to driving away happy — we make it effortless.</p>
+<!-- ==================== STATS BAR ==================== -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item fade-up">
+        <div class="stat-num">1,200+</div>
+        <div class="stat-label">Vehicles Serviced</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Service Categories</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Client Retention Rate</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-num">4.9★</div>
+        <div class="stat-label">Average Review Score</div>
+      </div>
+    </div>
   </div>
-  <div class="inner">
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-label">Call or<br>WhatsApp Us</div>
+</div>
+
+<!-- ==================== SERVICES ==================== -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label"><i class="fa-solid fa-sparkles"></i> Our Services</div>
+      <h2 class="section-title">Comprehensive Auto Care<br/><span class="text-accent">Under One Roof</span></h2>
+      <p class="section-subtitle">From inspection to protection, we deliver world-class automotive services tailored to every vehicle's needs.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-icon-wrap"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+        <div class="service-name">Vehicle Inspection</div>
+        <p class="service-desc">Comprehensive 60-point diagnostic inspection using professional-grade equipment to identify issues before they escalate.</p>
+        <ul class="service-features">
+          <li class="service-feature"><i class="fa-solid fa-check"></i> 60-point diagnostic check</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Digital inspection report</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Engine & electrical scan</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Certified technicians</li>
+        </ul>
+        <div class="service-price">
+          <span class="from">From</span>
+          <span class="amount">Rs. 2,500</span>
+          <span class="unit">/ session</span>
+        </div>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-label">Choose<br>Your Service</div>
+      <div class="service-card featured fade-up">
+        <div class="service-badge">Most Popular</div>
+        <div class="service-icon-wrap"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="service-name">Ceramic Coating</div>
+        <p class="service-desc">Professional-grade nano-ceramic coating that bonds to your paintwork at a molecular level for lasting protection and gloss.</p>
+        <ul class="service-features">
+          <li class="service-feature"><i class="fa-solid fa-check"></i> 5–7 year durability</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> UV & oxidation resistance</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Hydrophobic self-cleaning</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Swirl mark prevention</li>
+        </ul>
+        <div class="service-price">
+          <span class="from">From</span>
+          <span class="amount">Rs. 35,000</span>
+          <span class="unit">/ vehicle</span>
+        </div>
       </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-label">We Come<br>to Your Door</div>
+      <div class="service-card fade-up">
+        <div class="service-icon-wrap"><i class="fa-solid fa-film"></i></div>
+        <div class="service-name">Paint Protection Film</div>
+        <p class="service-desc">Self-healing TPU film that provides invisible armor against stone chips, scratches, and road debris damage.</p>
+        <ul class="service-features">
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Self-healing technology</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Optically clear finish</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> 10-year warranty coverage</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Custom-cut precision fit</li>
+        </ul>
+        <div class="service-price">
+          <span class="from">From</span>
+          <span class="amount">Rs. 55,000</span>
+          <span class="unit">/ vehicle</span>
+        </div>
       </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-label">Service Done<br>On the Spot</div>
+      <div class="service-card fade-up">
+        <div class="service-icon-wrap"><i class="fa-solid fa-spray-can-sparkles"></i></div>
+        <div class="service-name">Premium Detailing</div>
+        <p class="service-desc">Full exterior and interior detailing using premium products to restore your vehicle to showroom condition.</p>
+        <ul class="service-features">
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Multi-stage paint decontamination</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Machine polishing & buffing</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Interior deep clean & shampoo</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Leather conditioning</li>
+        </ul>
+        <div class="service-price">
+          <span class="from">From</span>
+          <span class="amount">Rs. 8,000</span>
+          <span class="unit">/ session</span>
+        </div>
       </div>
-      <div class="step">
-        <div class="step-num">5</div>
-        <div class="step-label">Pay Online<br>or Cash</div>
+      <div class="service-card fade-up">
+        <div class="service-icon-wrap"><i class="fa-solid fa-car-side"></i></div>
+        <div class="service-name">Window Tinting</div>
+        <p class="service-desc">Premium ceramic window films offering superior UV rejection, heat reduction, and enhanced cabin privacy and comfort.</p>
+        <ul class="service-features">
+          <li class="service-feature"><i class="fa-solid fa-check"></i> 99% UV rejection rate</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Scratch-resistant coating</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Legal tint levels available</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Lifetime manufacturer warranty</li>
+        </ul>
+        <div class="service-price">
+          <span class="from">From</span>
+          <span class="amount">Rs. 12,000</span>
+          <span class="unit">/ vehicle</span>
+        </div>
       </div>
-      <div class="step">
-        <div class="step-num">6</div>
-        <div class="step-label">Drive Away<br>Happy ✓</div>
+      <div class="service-card fade-up">
+        <div class="service-icon-wrap"><i class="fa-solid fa-arrow-up-right-dots"></i></div>
+        <div class="service-name">Fleet Maintenance</div>
+        <p class="service-desc">Tailored maintenance packages for commercial fleets and corporate clients with priority scheduling and volume pricing.</p>
+        <ul class="service-features">
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Dedicated fleet manager</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Priority booking slots</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Monthly reporting dashboard</li>
+          <li class="service-feature"><i class="fa-solid fa-check"></i> Volume discount pricing</li>
+        </ul>
+        <div class="service-price">
+          <span class="from">Custom</span>
+          <span class="amount">Pricing</span>
+          <span class="unit">— contact us</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── SERVICES ── -->
-<section id="services">
-  <div class="section-head inner">
-    <div class="section-tag">What We Offer</div>
-    <h2 class="section-heading">Complete Car Care, At Your Doorstep</h2>
-    <p class="section-sub">Every service is performed by trained professionals with premium products.</p>
-  </div>
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="service-icon-wrap">🧼</div>
-      <h3>Complete Car Wash</h3>
-      <p class="service-desc">Interior + Exterior + Engine Bay + Door Jambs + Tires. Every surface cleaned to perfection.</p>
-      <div class="service-price">Rs 800 – 1,500 <span>per vehicle</span></div>
-      <a href="https://wa.me/923001234567?text=I%20want%20to%20book%20a%20COMPLETE%20CAR%20WASH" class="btn-book" target="_blank">Book Now →</a>
+<!-- ==================== COMPARISON ==================== -->
+<section class="section comparison-section" id="comparison">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label"><i class="fa-solid fa-chart-bar"></i> Competitive Analysis</div>
+      <h2 class="section-title">Why We Stand Above<br/><span class="text-accent">The Competition</span></h2>
+      <p class="section-subtitle">See how One Stop Car Care compares to alternative service providers in Rawalpindi and Islamabad.</p>
     </div>
-    <div class="service-card">
-      <div class="service-icon-wrap">✨</div>
-      <h3>Detailing (Deep Clean)</h3>
-      <p class="service-desc">Clay bar treatment, polishing, wax coating & odor removal. Restores your car to showroom condition.</p>
-      <div class="service-price">Rs 5,000 – 15,000 <span>per vehicle</span></div>
-      <a href="https://wa.me/923001234567?text=I%20want%20to%20book%20DETAILING%20service" class="btn-book" target="_blank">Book Now →</a>
-    </div>
-    <div class="service-card">
-      <div class="service-icon-wrap">🛡️</div>
-      <h3>PPF – Paint Protection Film</h3>
-      <p class="service-desc">Military-grade film that shields your paint from scratches, stone chips, UV rays & bird droppings.</p>
-      <div class="service-price">Rs 30,000 – 80,000 <span>per vehicle</span></div>
-      <a href="https://wa.me/923001234567?text=I%20want%20to%20book%20PPF%20service" class="btn-book" target="_blank">Book Now →</a>
-    </div>
-    <div class="service-card">
-      <div class="service-icon-wrap">🔧</div>
-      <h3>Car Inspection</h3>
-      <p class="service-desc">Full diagnostic — engine, body, suspension, brakes, electricals & documentation. Trusted report provided.</p>
-      <div class="service-price">Rs 1,000 – 2,000 <span>per inspection</span></div>
-      <a href="https://wa.me/923001234567?text=I%20want%20to%20book%20CAR%20INSPECTION" class="btn-book" target="_blank">Book Now →</a>
-    </div>
-    <div class="service-card">
-      <div class="service-icon-wrap">🤝</div>
-      <h3>Used Car Package</h3>
-      <p class="service-desc">Inspection + Detailing + Wash — the complete bundle for buyers & sellers making confident decisions.</p>
-      <div class="service-price">Rs 8,000 – 20,000 <span>per vehicle</span></div>
-      <a href="https://wa.me/923001234567?text=I%20want%20the%20USED%20CAR%20PACKAGE" class="btn-book" target="_blank">Book Now →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ── WHY US ── -->
-<section id="why">
-  <div class="section-head inner">
-    <div class="section-tag" style="color: var(--gold-light);">Why Choose Us</div>
-    <h2 class="section-heading">The Standard You Deserve</h2>
-    <p class="section-sub" style="color:rgba(255,255,255,0.55);">We built One Stop Car Care around one principle: make car care completely stress-free.</p>
-  </div>
-  <div class="why-grid">
-    <div class="why-card">
-      <span class="why-icon">🏠</span>
-      <h3>Doorstep Service</h3>
-      <p>We bring all equipment to your home or office. You never need to visit a workshop again.</p>
-    </div>
-    <div class="why-card">
-      <span class="why-icon">📋</span>
-      <h3>Trusted Inspection Reports</h3>
-      <p>Detailed written reports with every inspection — perfect for used car buyers and sellers.</p>
-    </div>
-    <div class="why-card">
-      <span class="why-icon">🔄</span>
-      <h3>Free Redo Guarantee</h3>
-      <p>Not satisfied? We come back and redo the job at absolutely no extra charge.</p>
-    </div>
-    <div class="why-card">
-      <span class="why-icon">💰</span>
-      <h3>Fair, Transparent Pricing</h3>
-      <p>No hidden charges, no surprise add-ons. The price you're quoted is the price you pay.</p>
-    </div>
-    <div class="why-card">
-      <span class="why-icon">⚡</span>
-      <h3>30-Minute Response</h3>
-      <p>Send us a WhatsApp and our team confirms your booking within 30 minutes.</p>
-    </div>
-    <div class="why-card">
-      <span class="why-icon">🏆</span>
-      <h3>Trained Professionals</h3>
-      <p>Every technician is trained, vetted and equipped with professional-grade tools and products.</p>
+    <div class="comparison-outer">
+      <div class="comparison-grid fade-up">
+        <!-- Header -->
+        <div class="comp-header-cell">
+          <div class="comp-brand">Service Feature</div>
+          <div class="comp-sub">What matters to you</div>
+        </div>
+        <div class="comp-header-cell highlight-col">
+          <div class="comp-brand">One Stop Car Care</div>
+          <div class="comp-sub">Our commitment</div>
+        </div>
+        <div class="comp-header-cell">
+          <div class="comp-brand">Local Workshops</div>
+          <div class="comp-sub">Typical alternative</div>
+        </div>
+        <div class="comp-header-cell">
+          <div class="comp-brand">Dealerships</div>
+          <div class="comp-sub">Brand service centers</div>
+        </div>
+        <!-- Rows -->
+        <div class="comp-row">
+          <div class="comp-cell feature-label"><i class="fa-solid fa-certificate" style="color:var(--accent);margin-right:8px;"></i> Certified Technicians</div>
+          <div class="comp-cell check highlight-col"><i class="fa-solid fa-circle-check fa-lg"></i></div>
+          <div class="comp-cell cross"><i class="fa-solid fa-circle-xmark fa-lg"></i></div>
+          <div class="comp-cell check"><i class="fa-solid fa-circle-check fa-lg"></i></div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-cell feature-label"><i class="fa-solid fa-shield-halved" style="color:var(--accent);margin-right:8px;"></i> Ceramic & PPF Services</div>
+          <div class="comp-cell check highlight-col"><i class="fa-solid fa-circle-check fa-lg"></i></div>
+          <div class="comp-cell cross"><i class="fa-solid fa-circle-xmark fa-lg"></i></div>
+          <div class="comp-cell cross"><i class="fa-solid fa-circle-xmark fa-lg"></i></div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-cell feature-label"><i class="fa-solid fa-tag" style="color:var(--accent);margin-right:8px;"></i> Transparent Pricing</div>
+          <div class="comp-cell check highlight-col"><i class="fa-solid fa-circle-check fa-lg"></i></div>
+          <div class="comp-cell cross"><i class="fa-solid fa-circle-xmark fa-lg"></i></div>
+          <div class="comp-cell cross"><i class="fa-solid fa-circle-xmark fa-lg"></i></div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-cell feature-label"><i class="fa-solid fa-file-lines" style="color:var(--accent);margin-right:8px;"></i> Digital Inspection Reports</div>
+          <div class="comp-cell check highlight-col"><i class="fa-solid fa-circle-check fa-lg"></i></div>
+          <div class="comp-cell cross"><i class="fa-solid fa-circle-xmark fa-lg"></i></div>
+          <div class="comp-cell check"><i class="fa-solid fa-circle-check fa-lg"></i></div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-cell feature-label"><i class="fa-solid fa-clock" style="color:var(--accent);margin-right:8px;"></i> Same-Day Turnaround</div>
+          <div class="comp-cell check highlight-col"><i class="fa-solid fa-circle-check fa-lg"></i></div>
+          <div class="comp-cell check"><i class="fa-solid fa-circle-check fa-lg"></i></div>
+          <div class="comp-cell cross"><i class="fa-solid fa-circle-xmark fa-lg"></i></div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-cell feature-label"><i class="fa-solid fa-crown" style="color:var(--accent);margin-right:8px;"></i> Premium Product Brands</div>
+          <div class="comp-cell check highlight-col"><i class="fa-solid fa-circle-check fa-lg"></i></div>
+          <div class="comp-cell cross"><i class="fa-solid fa-circle-xmark fa-lg"></i></div>
+          <div class="comp-cell check"><i class="fa-solid fa-circle-check fa-lg"></i></div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-cell feature-label"><i class="fa-solid fa-headset" style="color:var(--accent);margin-right:8px;"></i> Post-Service Support</div>
+          <div class="comp-cell check highlight-col"><i class="fa-solid fa-circle-check fa-lg"></i></div>
+          <div class="comp-cell cross"><i class="fa-solid fa-circle-xmark fa-lg"></i></div>
+          <div class="comp-cell cross"><i class="fa-solid fa-circle-xmark fa-lg"></i></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ── BOOKING ── -->
-<section id="booking">
-  <div class="booking-layout">
-    <div class="booking-info">
-      <div class="section-tag">Get In Touch</div>
-      <h2>Book Your<br>Service Today</h2>
-      <p>Fill out the form and we'll confirm your booking within 30 minutes. Or reach us directly on WhatsApp for an even faster response.</p>
-
-      <div class="booking-contact-item">
-        <div class="bci-icon">📱</div>
-        <div>
-          <div class="bci-label">WhatsApp / Call</div>
-          <div class="bci-value">0300-1234567</div>
-        </div>
-      </div>
-      <div class="booking-contact-item">
-        <div class="bci-icon">📧</div>
-        <div>
-          <div class="bci-label">Email</div>
-          <div class="bci-value">info@onestopcarcare.pk</div>
-        </div>
-      </div>
-      <div class="booking-contact-item">
-        <div class="bci-icon">📍</div>
-        <div>
-          <div class="bci-label">Service Area</div>
-          <div class="bci-value">Rawalpindi & Islamabad</div>
-        </div>
-      </div>
-      <div class="booking-contact-item">
-        <div class="bci-icon">🕐</div>
-        <div>
-          <div class="bci-label">Working Hours</div>
-          <div class="bci-value">Mon–Sat, 8 AM – 8 PM</div>
-        </div>
-      </div>
+<!-- ==================== WHY CHOOSE US ==================== -->
+<section class="section" id="why-us">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label"><i class="fa-solid fa-trophy"></i> Why Choose Us</div>
+      <h2 class="section-title">The One Stop<br/><span class="text-accent">Difference</span></h2>
+      <p class="section-subtitle">We've built our reputation on trust, precision, and an unwavering commitment to automotive excellence.</p>
     </div>
-
-    <div class="booking-form-wrap">
-      <div style="margin-bottom:28px;">
-        <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--green-dark); margin-bottom:6px;">Request a Booking</h3>
-        <p style="font-size:0.82rem; color:var(--text-muted);">We'll contact you within 30 minutes to confirm.</p>
+    <div class="why-grid">
+      <div class="why-card fade-up">
+        <div class="why-icon"><i class="fa-solid fa-user-graduate"></i></div>
+        <h3 class="why-title">Certified Professionals</h3>
+        <p class="why-desc">Our technicians are internationally trained and hold certifications in ceramic coating, PPF, and advanced detailing protocols from leading industry bodies.</p>
       </div>
-      <div class="form-row">
-        <div class="fg">
-          <label>Full Name *</label>
-          <input type="text" id="f-name" placeholder="Muhammad Afzal" />
-        </div>
-        <div class="fg">
-          <label>WhatsApp Number *</label>
-          <input type="tel" id="f-phone" placeholder="0300 1234567" />
-        </div>
+      <div class="why-card fade-up">
+        <div class="why-icon"><i class="fa-solid fa-flask-vial"></i></div>
+        <h3 class="why-title">Premium Products Only</h3>
+        <p class="why-desc">We use only Grade A materials from globally recognized brands — Gyeon, Xpel, 3M, and IGL Coatings — ensuring longevity and results you can see.</p>
       </div>
-      <div class="fg">
-        <label>Car Model</label>
-        <input type="text" id="f-car" placeholder="e.g., Honda Civic 2020" />
+      <div class="why-card fade-up">
+        <div class="why-icon"><i class="fa-solid fa-shield-check"></i></div>
+        <h3 class="why-title">Guaranteed Workmanship</h3>
+        <p class="why-desc">Every service comes with a written workmanship guarantee. If you're not satisfied, we make it right — no questions, no excuses.</p>
       </div>
-      <div class="fg">
-        <label>Service Needed *</label>
-        <select id="f-service">
-          <option value="">Select a service…</option>
-          <option value="Complete Car Wash">Complete Car Wash (Rs 800–1,500)</option>
-          <option value="Detailing">Detailing / Deep Clean (Rs 5,000–15,000)</option>
-          <option value="PPF">PPF – Paint Protection Film (Rs 30,000–80,000)</option>
-          <option value="Car Inspection">Car Inspection (Rs 1,000–2,000)</option>
-          <option value="Used Car Package">Used Car Package (Rs 8,000–20,000)</option>
-        </select>
+      <div class="why-card fade-up">
+        <div class="why-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+        <h3 class="why-title">Efficient Turnaround</h3>
+        <p class="why-desc">Respect for your time is non-negotiable. We complete most services same-day and provide real-time status updates throughout the process.</p>
       </div>
-      <div class="fg">
-        <label>Your Address</label>
-        <textarea id="f-address" placeholder="Your home or office address for doorstep service"></textarea>
+      <div class="why-card fade-up">
+        <div class="why-icon"><i class="fa-solid fa-tags"></i></div>
+        <h3 class="why-title">Transparent Pricing</h3>
+        <p class="why-desc">No hidden charges, no last-minute surprises. Every quote is itemized and agreed upon before any work begins — what you see is what you pay.</p>
       </div>
-      <div class="fg">
-        <label>Preferred Date &amp; Time</label>
-        <input type="text" id="f-time" placeholder="e.g., Tomorrow 10 AM" />
+      <div class="why-card fade-up">
+        <div class="why-icon"><i class="fa-solid fa-headset"></i></div>
+        <h3 class="why-title">Dedicated Aftercare</h3>
+        <p class="why-desc">Our relationship doesn't end when your vehicle leaves. We provide full aftercare guidance, follow-up inspections, and priority rebooking for return clients.</p>
       </div>
-      <button class="btn-submit" onclick="submitBooking()">Submit Booking Request</button>
     </div>
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <svg width="32" height="37" viewBox="0 0 38 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M19 2L4 8v14c0 9.4 6.4 18.2 15 20.8C27.6 40.2 34 31.4 34 22V8L19 2z" fill="#2D6A4F" stroke="#C9A84C" stroke-width="1.5"/>
-          <path d="M12 22l5 5 9-10" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <div>
-          <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:white;font-weight:700;">One Stop Car Care</div>
-          <div style="font-size:0.6rem;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;">Inspect · Protect · Detail</div>
+<!-- ==================== TEAM ==================== -->
+<section class="section" id="team" style="background:var(--bg2)">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label"><i class="fa-solid fa-users"></i> Our Team</div>
+      <h2 class="section-title">The Experts Behind<br/><span class="text-accent">Every Result</span></h2>
+      <p class="section-subtitle">A team of passionate automotive specialists united by one goal: delivering excellence with every vehicle we touch.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card fade-up">
+        <div class="team-avatar">AK</div>
+        <div class="team-name">Muhammad Afzal</div>
+        <div class="team-role">Founder & CEO</div>
+        <p class="team-bio">12 years in automotive services. Certified detailing professional with a vision to elevate car care standards in Pakistan.</p>
+        <div class="team-social">
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
         </div>
       </div>
-      <p>Professional doorstep car care for Rawalpindi &amp; Islamabad. Trusted inspection reports, premium detailing, and paint protection — all at your convenience.</p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Services</h4>
-      <ul>
-        <li><a href="#services">Complete Car Wash</a></li>
-        <li><a href="#services">Detailing</a></li>
-        <li><a href="#services">PPF</a></li>
-        <li><a href="#services">Car Inspection</a></li>
-        <li><a href="#services">Used Car Package</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="#how">How It Works</a></li>
-        <li><a href="#why">Why Choose Us</a></li>
-        <li><a href="#booking">Contact</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="https://wa.me/923001234567">WhatsApp: 0300-1234567</a></li>
-        <li><a href="mailto:info@onestopcarcare.pk">info@onestopcarcare.pk</a></li>
-        <li><a href="#">Rawalpindi &amp; Islamabad</a></li>
-      </ul>
+      <div class="team-card fade-up">
+        <div class="team-avatar">AF</div>
+        <div class="team-name">Ayesha Falak Sher</div>
+        <div class="team-role">Head of Detailing</div>
+        <p class="team-bio">Master detailer with 8 years of experience. Specializes in paint correction, ceramic coating application, and surface restoration.</p>
+        <div class="team-social">
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="team-card fade-up">
+        <div class="team-avatar">HK</div>
+        <div class="team-name">Hafsa Kanwal Awan</div>
+        <div class="team-role">Client Relations Manager</div>
+        <p class="team-bio">Ensures every client experience is seamless from first contact to vehicle handover. Manages bookings and quality follow-up.</p>
+        <div class="team-social">
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="team-card fade-up">
+        <div class="team-avatar">MA</div>
+        <div class="team-name">Muhammad Abdullah Saifal</div>
+        <div class="team-role">Senior Technician</div>
+        <p class="team-bio">PPF and window film specialist with expertise in precision cut and installation for high-end and luxury vehicles.</p>
+        <div class="team-social">
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-  <hr class="footer-divider" />
+<!-- ==================== TIMELINE ==================== -->
+<section class="section timeline-section" id="timeline">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label"><i class="fa-solid fa-map-location-dot"></i> Our Journey</div>
+      <h2 class="section-title">From Startup to<br/><span class="text-accent">Industry Leader</span></h2>
+      <p class="section-subtitle">Five milestones that define our growth and our commitment to raising the standard of car care in Pakistan.</p>
+    </div>
+    <div class="timeline-track">
+      <div class="timeline-line"></div>
+      <div class="timeline-steps">
+        <div class="timeline-step fade-up">
+          <div class="timeline-node"><i class="fa-solid fa-seedling"></i></div>
+          <div class="timeline-card">
+            <div class="timeline-year">2020</div>
+            <div class="timeline-event">Founded</div>
+            <div class="timeline-detail">One Stop Car Care launches with a single service bay and a clear vision for premium automotive care.</div>
+          </div>
+        </div>
+        <div class="timeline-step fade-up">
+          <div class="timeline-node"><i class="fa-solid fa-certificate"></i></div>
+          <div class="timeline-card">
+            <div class="timeline-year">2021</div>
+            <div class="timeline-event">Certification</div>
+            <div class="timeline-detail">Team achieves international certifications in ceramic coating, PPF installation, and advanced paint correction.</div>
+          </div>
+        </div>
+        <div class="timeline-step fade-up">
+          <div class="timeline-node"><i class="fa-solid fa-building"></i></div>
+          <div class="timeline-card">
+            <div class="timeline-year">2022</div>
+            <div class="timeline-event">Expanded Facility</div>
+            <div class="timeline-detail">Moved to a 5,000 sqft dedicated facility in Rawalpindi with state-of-the-art equipment and climate-controlled bays.</div>
+          </div>
+        </div>
+        <div class="timeline-step fade-up">
+          <div class="timeline-node"><i class="fa-solid fa-handshake"></i></div>
+          <div class="timeline-card">
+            <div class="timeline-year">2023</div>
+            <div class="timeline-event">Corporate Clients</div>
+            <div class="timeline-detail">Secured fleet management contracts with leading corporations in Islamabad, serving 200+ corporate vehicles monthly.</div>
+          </div>
+        </div>
+        <div class="timeline-step fade-up">
+          <div class="timeline-node"><i class="fa-solid fa-trophy"></i></div>
+          <div class="timeline-card">
+            <div class="timeline-year">2024</div>
+            <div class="timeline-event">Award Winning</div>
+            <div class="timeline-detail">Recognized as Rawalpindi's top-rated automotive service provider with 1,200+ satisfied clients and 4.9-star rating.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <div class="footer-bottom">
-    <p>© 2026 One Stop Car Care. All rights reserved.</p>
-    <p>Muhammad Afzal · Ayesha Bibi · Hafsa Kanwal Awan · Muhammad Abdullah Saifal</p>
+<!-- ==================== REVENUE & INVESTMENT ==================== -->
+<section class="section" id="revenue">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label"><i class="fa-solid fa-chart-line"></i> Business Overview</div>
+      <h2 class="section-title">Strong Growth<br/><span class="text-accent">Clear Returns</span></h2>
+      <p class="section-subtitle">Our business model delivers consistent, scalable revenue built on high-margin services and loyal repeat clientele.</p>
+    </div>
+    <div class="dashboard-grid">
+      <div class="kpi-card revenue-large fade-up">
+        <div class="kpi-label">Monthly Revenue</div>
+        <div class="kpi-value">Rs. 4.2M</div>
+        <div class="kpi-change"><i class="fa-solid fa-arrow-trend-up"></i> +34% vs last year</div>
+        <div class="revenue-visual">
+          <div class="revenue-bar-item" style="height:45%"></div>
+          <div class="revenue-bar-item" style="height:55%"></div>
+          <div class="revenue-bar-item" style="height:48%"></div>
+          <div class="revenue-bar-item" style="height:65%"></div>
+          <div class="revenue-bar-item" style="height:70%"></div>
+          <div class="revenue-bar-item" style="height:60%"></div>
+          <div class="revenue-bar-item active" style="height:85%"></div>
+          <div class="revenue-bar-item" style="height:78%"></div>
+          <div class="revenue-bar-item" style="height:90%"></div>
+          <div class="revenue-bar-item" style="height:82%"></div>
+          <div class="revenue-bar-item" style="height:95%"></div>
+          <div class="revenue-bar-item active" style="height:100%"></div>
+        </div>
+        <div class="revenue-months">
+          <span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span>
+          <span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span>
+        </div>
+      </div>
+      <div class="kpi-card fade-up">
+        <div class="kpi-label">Gross Margin</div>
+        <div class="kpi-value">68%</div>
+        <div class="kpi-progress"><div class="kpi-bar" style="width:68%"></div></div>
+        <div class="kpi-change"><i class="fa-solid fa-arrow-trend-up"></i> +5% improvement</div>
+      </div>
+      <div class="kpi-card fade-up">
+        <div class="kpi-label">Return Clients</div>
+        <div class="kpi-value">78%</div>
+        <div class="kpi-progress"><div class="kpi-bar" style="width:78%"></div></div>
+        <div class="kpi-change"><i class="fa-solid fa-arrow-trend-up"></i> Retention rate</div>
+      </div>
+      <div class="kpi-card fade-up">
+        <div class="kpi-label">Initial Investment</div>
+        <div class="kpi-value">Rs. 2.5M</div>
+        <div class="kpi-progress"><div class="kpi-bar" style="width:100%"></div></div>
+        <div class="kpi-change" style="color:var(--accent)"><i class="fa-solid fa-check"></i> Fully recovered</div>
+      </div>
+      <div class="kpi-card fade-up">
+        <div class="kpi-label">Break-even Point</div>
+        <div class="kpi-value">Month 8</div>
+        <div class="kpi-progress"><div class="kpi-bar" style="width:100%"></div></div>
+        <div class="kpi-change" style="color:var(--accent)"><i class="fa-solid fa-flag-checkered"></i> Achieved</div>
+      </div>
+      <div class="kpi-card fade-up">
+        <div class="kpi-label">Net Profit Margin</div>
+        <div class="kpi-value">42%</div>
+        <div class="kpi-progress"><div class="kpi-bar" style="width:42%"></div></div>
+        <div class="kpi-change"><i class="fa-solid fa-arrow-trend-up"></i> Industry leading</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section class="section contact-section" id="contact">
+  <div class="container">
+    <div class="fade-up">
+      <div class="section-label"><i class="fa-solid fa-paper-plane"></i> Get In Touch</div>
+      <h2 class="section-title">Book Your Service<br/><span class="text-accent">Today</span></h2>
+      <p class="section-subtitle">Ready to give your vehicle the care it deserves? Fill out the form and we'll confirm your appointment within 2 hours.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info fade-up">
+        <div class="contact-info-item">
+          <div class="contact-info-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="contact-info-text">
+            <p>Location</p>
+            <strong>Satellite Town, Rawalpindi, Punjab, Pakistan</strong>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="contact-info-text">
+            <p>Phone</p>
+            <strong>+92 300 123 4567</strong>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="contact-info-text">
+            <p>Email</p>
+            <strong>hello@onestopcarcare.pk</strong>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon"><i class="fa-solid fa-clock"></i></div>
+          <div class="contact-info-text">
+            <p>Working Hours</p>
+            <strong>Mon – Sat: 9:00 AM – 7:00 PM</strong>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon"><i class="fa-brands fa-whatsapp"></i></div>
+          <div class="contact-info-text">
+            <p>WhatsApp</p>
+            <strong>+92 300 123 4567</strong>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-wrap fade-up">
+        <form>
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="Ahmed"/>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Khan"/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" placeholder="+92 300 000 0000"/>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" placeholder="ahmed@example.com"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Service Required</label>
+            <select>
+              <option value="">Select a service...</option>
+              <option>Vehicle Inspection</option>
+              <option>Ceramic Coating</option>
+              <option>Paint Protection Film (PPF)</option>
+              <option>Premium Detailing</option>
+              <option>Window Tinting</option>
+              <option>Fleet Maintenance</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Vehicle Details</label>
+            <input type="text" placeholder="e.g. Toyota Corolla 2021, White"/>
+          </div>
+          <div class="form-group">
+            <label>Additional Notes</label>
+            <textarea placeholder="Any specific concerns or requirements..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">
+            <i class="fa-solid fa-calendar-check"></i> Book Appointment
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="nav-logo-mark"><i class="fa-solid fa-shield-halved"></i></div>
+          <div class="nav-logo-text">
+            <span>One Stop Car Care</span>
+            <span>Inspect · Protect · Detail</span>
+          </div>
+        </div>
+        <p>Pakistan's premier automotive service centre delivering inspection, protection, and detailing to the highest international standards.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <div class="footer-links">
+          <a href="#services"><i class="fa-solid fa-chevron-right" style="font-size:10px;"></i> Vehicle Inspection</a>
+          <a href="#services"><i class="fa-solid fa-chevron-right" style="font-size:10px;"></i> Ceramic Coating</a>
+          <a href="#services"><i class="fa-solid fa-chevron-right" style="font-size:10px;"></i> Paint Protection Film</a>
+          <a href="#services"><i class="fa-solid fa-chevron-right" style="font-size:10px;"></i> Premium Detailing</a>
+          <a href="#services"><i class="fa-solid fa-chevron-right" style="font-size:10px;"></i> Window Tinting</a>
+          <a href="#services"><i class="fa-solid fa-chevron-right" style="font-size:10px;"></i> Fleet Maintenance</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links">
+          <a href="#home"><i class="fa-solid fa-chevron-right" style="font-size:10px;"></i> About Us</a>
+          <a href="#team"><i class="fa-solid fa-chevron-right" style="font-size:10px;"></i> Our Team</a>
+          <a href="#timeline"><i class="fa-solid fa-chevron-right" style="font-size:10px;"></i> Our Journey</a>
+          <a href="#why-us"><i class="fa-solid fa-chevron-right" style="font-size:10px;"></i> Why Choose Us</a>
+          <a href="#contact"><i class="fa-solid fa-chevron-right" style="font-size:10px;"></i> Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-links">
+          <a href="tel:+923001234567"><i class="fa-solid fa-phone" style="font-size:11px;width:14px;"></i> +92 300 123 4567</a>
+          <a href="mailto:hello@onestopcarcare.pk"><i class="fa-solid fa-envelope" style="font-size:11px;width:14px;"></i> hello@onestopcarcare.pk</a>
+          <a href="#"><i class="fa-solid fa-location-dot" style="font-size:11px;width:14px;"></i> Satellite Town, Rawalpindi</a>
+          <a href="#"><i class="fa-solid fa-clock" style="font-size:11px;width:14px;"></i> Mon–Sat: 9AM – 7PM</a>
+          <a href="#"><i class="fa-brands fa-whatsapp" style="font-size:12px;width:14px;"></i> WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 One Stop Car Care. All rights reserved. Rawalpindi, Pakistan.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
   </div>
 </footer>
 
-<!-- WhatsApp float button -->
-<a href="https://wa.me/923001234567?text=Hello%20One%20Stop%20Car%20Care%2C%20I%20want%20to%20book%20a%20service" class="wa-float" target="_blank" title="Chat on WhatsApp">💬</a>
-
-<!-- Toast -->
-<div class="toast" id="toast"></div>
-
 <script>
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3500);
-  }
+// ---- Navbar scroll effect ----
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
 
-  function submitBooking() {
-    const name    = document.getElementById('f-name').value.trim();
-    const phone   = document.getElementById('f-phone').value.trim();
-    const car     = document.getElementById('f-car').value.trim();
-    const service = document.getElementById('f-service').value;
-    const address = document.getElementById('f-address').value.trim();
-    const time    = document.getElementById('f-time').value.trim();
-
-    if (!name || !phone) {
-      showToast('⚠️ Please enter your name and phone number.');
-      return;
-    }
-    if (!service) {
-      showToast('⚠️ Please select a service.');
-      return;
-    }
-
-    // Build WhatsApp message
-    const msg = encodeURIComponent(
-      `*New Booking Request*\n\nName: ${name}\nPhone: ${phone}\nCar: ${car || 'Not specified'}\nService: ${service}\nAddress: ${address || 'Not specified'}\nTime: ${time || 'Not specified'}`
-    );
-    window.open(`https://wa.me/923001234567?text=${msg}`, '_blank');
-    showToast('✅ Redirecting to WhatsApp — your booking is ready to send!');
-
-    document.getElementById('f-name').value = '';
-    document.getElementById('f-phone').value = '';
-    document.getElementById('f-car').value = '';
-    document.getElementById('f-service').value = '';
-    document.getElementById('f-address').value = '';
-    document.getElementById('f-time').value = '';
-  }
-
-  // Smooth active nav on scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 120) current = s.id;
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--gold)' : '';
-    });
+// ---- Mobile menu ----
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+mobileMenu.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
   });
+});
+
+// ---- Active nav link on scroll ----
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + entry.target.id) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+}, { threshold: 0.35 });
+sections.forEach(s => observer.observe(s));
+
+// ---- Fade-in on scroll ----
+const fadeEls = document.querySelectorAll('.fade-up');
+const fadeObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      const siblings = entry.target.parentElement.querySelectorAll('.fade-up');
+      let delay = 0;
+      siblings.forEach((el, idx) => {
+        if (el === entry.target) delay = idx * 80;
+      });
+      setTimeout(() => { entry.target.classList.add('visible'); }, Math.min(delay, 400));
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+fadeEls.forEach(el => fadeObserver.observe(el));
+
+// ---- Form submit ----
+const form = document.querySelector('.contact-form-wrap form');
+if (form) {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const btn = form.querySelector('.form-submit');
+    btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Appointment Requested!';
+    btn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+    setTimeout(() => {
+      btn.innerHTML = '<i class="fa-solid fa-calendar-check"></i> Book Appointment';
+      btn.style.background = '';
+      form.reset();
+    }, 3500);
+  });
+}
+
+// ---- Counter animation for stats ----
+function animateCounter(el) {
+  const text = el.textContent.replace(/[^0-9.]/g, '');
+  const num = parseFloat(text);
+  if (!num || isNaN(num)) return;
+  const suffix = el.textContent.replace(text, '');
+  const prefix = suffix.includes('Rs') ? 'Rs. ' : '';
+  let start = 0;
+  const step = num / 50;
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= num) { start = num; clearInterval(timer); }
+    const display = Number.isInteger(num) ? Math.floor(start) : start.toFixed(1);
+    el.textContent = prefix + display + (suffix.replace(prefix,''));
+  }, 30);
+}
+const statNums = document.querySelectorAll('.stat-num, .kpi-value');
+const statObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCounter(entry.target);
+      statObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+statNums.forEach(el => statObserver.observe(el));
 </script>
 </body>
 </html>
