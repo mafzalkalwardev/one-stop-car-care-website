@@ -44,7 +44,7 @@
 ## 📲 Book a Service
 
 WhatsApp booking link:
-- **wa.me/923001234567**
+- **wa.me/923079670503**
 
 On the website, click **“Book on WhatsApp”** to send your request with service details.
 
@@ -52,12 +52,21 @@ On the website, click **“Book on WhatsApp”** to send your request with servi
 
 ## 🖼️ Demo / Screenshots
 
-Add your screenshots here (optional):
-- `screenshots/1.png`
-- `screenshots/2.png`
+Live Preview: **https://mafzalkalwardev.github.io/one-stop-car-care-website/**
 
----
+### Key Screens
 
+- 🏠 Hero / Landing Section (Doorstep car care headline)
+- ✅ Services Cards (Wash, Detailing, PPF, Inspection, Used Car Package)
+- 🧭 How-It-Works (6-step process)
+- 📅 Booking Form (WhatsApp prefilled request flow)
+
+
+
+Example (optional):
+- ![Hero Screenshot](screenshots/hero.png)
+- ![Services Screenshot](screenshots/services.png)
+- ![Booking Screenshot](screenshots/booking.png)
 ## ▶️ Run Locally
 
 Since this is a static site (single-page HTML):
