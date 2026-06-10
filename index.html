@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>One Stop Car Care — Doorstep Car Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-dark:  #0D2B1D;
+      --green:       #1B4332;
+      --green-mid:   #2D6A4F;
+      --green-light: #3A8A63;
+      --gold:        #C9A84C;
+      --gold-light:  #E2C97E;
+      --white:       #FFFFFF;
+      --off-white:   #F7F5F0;
+      --text:        #1A1A1A;
+      --text-muted:  #5C6B60;
+      --border:      #D4D9D4;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ────── NAV ────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(13, 43, 29, 0.97);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      height: 68px;
+      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo-shield {
+      width: 38px;
+      height: 38px;
+    }
+
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .nav-logo-text span:first-child {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .nav-logo-text span:last-child {
+      font-size: 0.6rem;
+      color: var(--gold);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--gold) !important;
+      color: var(--green-dark) !important;
+      padding: 9px 22px;
+      border-radius: 4px;
+      font-weight: 700 !important;
+      font-size: 0.8rem !important;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .nav-cta:hover { background: var(--gold-light) !important; color: var(--green-dark) !important; }
+
+    /* ────── HERO ────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--green-dark);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 100px 6% 80px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 70% 50%, rgba(45,106,79,0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 40% at 90% 20%, rgba(201,168,76,0.08) 0%, transparent 60%);
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.75;
+      margin-bottom: 36px;
+      max-width: 440px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--green-dark);
+      padding: 14px 28px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 14px 28px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-stats {
+      display: flex;
+      gap: 36px;
+      margin-top: 48px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .hero-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      display: block;
+    }
+
+    .hero-stat-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Hero right: visual card */
+    .hero-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 12px;
+      padding: 28px 32px;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-card-title {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .hero-card-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      font-size: 0.88rem;
+    }
+
+    .hero-card-row:last-child { border-bottom: none; }
+
+    .hero-card-service { color: rgba(255,255,255,0.75); }
+
+    .hero-card-price { color: var(--gold); font-weight: 600; }
+
+    .trust-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .trust-badge {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 10px;
+      padding: 18px 14px;
+      text-align: center;
+    }
+
+    .trust-badge-icon {
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+    }
+
+    .trust-badge-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.4;
+    }
+
+    /* ────── SECTION BASE ────── */
+    section { padding: 96px 6%; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .section-tag::before {
+      content: '';
+      width: 20px; height: 2px;
+      background: var(--gold);
+      display: block;
+    }
+
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--green-dark);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.75;
+    }
+
+    .section-head { max-width: 1200px; margin: 0 auto 56px; }
+
+    .inner { max-width: 1200px; margin: 0 auto; }
+
+    /* ────── HOW IT WORKS ────── */
+    #how { background: var(--off-white); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(100% / 12);
+      right: calc(100% / 12);
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--green-light));
+      z-index: 0;
+    }
+
+    .step {
+      text-align: center;
+      padding: 0 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      border: 3px solid var(--off-white);
+      box-shadow: 0 0 0 3px var(--gold);
+    }
+
+    .step-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--green-dark);
+      line-height: 1.4;
+    }
+
+    /* ────── SERVICES ────── */
+    #services { background: var(--white); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+      background: var(--white);
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--gold), var(--green-light));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .service-card:hover {
+      border-color: var(--green-light);
+      box-shadow: 0 12px 40px rgba(27,67,50,0.12);
+      transform: translateY(-3px);
+    }
+
+    .service-card:hover::after { opacity: 1; }
+
+    .service-icon-wrap {
+      width: 52px;
+      height: 52px;
+      background: var(--off-white);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+    }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--green-dark);
+      margin-bottom: 8px;
+    }
+
+    .service-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .service-price {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--green-mid);
+      margin-bottom: 20px;
+    }
+
+    .service-price span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-left: 4px;
+    }
+
+    .btn-book {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--green);
+      color: var(--white);
+      padding: 10px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+
+    .btn-book:hover { background: var(--green-mid); }
+
+    /* ────── WHY US ────── */
+    #why {
+      background: var(--green-dark);
+      color: var(--white);
+    }
+
+    #why .section-heading { color: var(--white); }
+    #why .section-sub { color: rgba(255,255,255,0.6); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .why-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.18);
+      border-radius: 12px;
+      padding: 32px 28px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .why-card:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(201,168,76,0.4);
+    }
+
+    .why-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .why-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .why-card p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+    }
+
+    /* ────── BOOKING ────── */
+    #booking { background: var(--off-white); }
+
+    .booking-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 60px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .booking-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--green-dark);
+      margin-bottom: 16px;
+    }
+
+    .booking-info p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+
+    .booking-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .booking-contact-item:last-child { border: none; }
+
+    .bci-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--green);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .bci-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .bci-value {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--green-dark);
+    }
+
+    .booking-form-wrap {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 36px;
+      box-shadow: 0 8px 32px rgba(27,67,50,0.07);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .fg {
+      margin-bottom: 18px;
+    }
+
+    .fg label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      margin-bottom: 6px;
+    }
+
+    .fg input, .fg select, .fg textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+
+    .fg input:focus, .fg select:focus, .fg textarea:focus {
+      border-color: var(--green-mid);
+      box-shadow: 0 0 0 3px rgba(45,106,79,0.08);
+    }
+
+    .fg textarea { resize: vertical; min-height: 80px; }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      padding: 15px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 4px;
+    }
+
+    .btn-submit:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+    /* ────── FOOTER ────── */
+    footer {
+      background: var(--green-dark);
+      padding: 64px 6% 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      max-width: 1200px;
+      margin: 0 auto 48px;
+    }
+
+    .footer-brand p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.75;
+      margin-top: 16px;
+      max-width: 280px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--gold); }
+
+    .footer-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      max-width: 1200px;
+      margin: 0 auto 24px;
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ────── SUCCESS TOAST ────── */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--green);
+      color: var(--white);
+      border: 1px solid var(--gold);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 9999;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ────── WHATSAPP FLOAT ────── */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: #25D366;
+      color: white;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      z-index: 90;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .wa-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+    }
+
+    /* ────── MOBILE ────── */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .steps { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+      .steps::before { display: none; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .booking-layout { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      nav .nav-links { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 72px 5%; }
+      .form-row { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 24px; flex-wrap: wrap; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-shield" viewBox="0 0 38 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19 2L4 8v14c0 9.4 6.4 18.2 15 20.8C27.6 40.2 34 31.4 34 22V8L19 2z" fill="#2D6A4F" stroke="#C9A84C" stroke-width="1.5"/>
+      <path d="M12 22l5 5 9-10" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span>One Stop</span>
+      <span>Car Care</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#booking" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Doorstep Car Care — Rawalpindi & Islamabad</div>
+      <h1>Your Car Deserves<br><em>Expert Care</em><br>At Your Door.</h1>
+      <p class="hero-sub">Inspection, detailing, PPF & full wash — all performed at your home or office. No workshop trip. No hassle. Just results.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/923001234567?text=Hello%20One%20Stop%20Car%20Care%2C%20I%20want%20to%20book%20a%20service" class="btn-primary" target="_blank">
+          📱 Book on WhatsApp
+        </a>
+        <a href="#services" class="btn-outline">See Services</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <span class="hero-stat-num">100%</span>
+          <span class="hero-stat-label">Satisfaction<br>Guarantee</span>
+        </div>
+        <div>
+          <span class="hero-stat-num">30 min</span>
+          <span class="hero-stat-label">Response<br>Time</span>
+        </div>
+        <div>
+          <span class="hero-stat-num">5+</span>
+          <span class="hero-stat-label">Services<br>Available</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-title">Our Services &amp; Pricing</div>
+        <div class="hero-card-row">
+          <span class="hero-card-service">🧼 Complete Car Wash</span>
+          <span class="hero-card-price">Rs 800–1,500</span>
+        </div>
+        <div class="hero-card-row">
+          <span class="hero-card-service">✨ Detailing</span>
+          <span class="hero-card-price">Rs 5,000–15,000</span>
+        </div>
+        <div class="hero-card-row">
+          <span class="hero-card-service">🛡️ PPF (Paint Protection)</span>
+          <span class="hero-card-price">Rs 30,000–80,000</span>
+        </div>
+        <div class="hero-card-row">
+          <span class="hero-card-service">🔧 Car Inspection</span>
+          <span class="hero-card-price">Rs 1,000–2,000</span>
+        </div>
+        <div class="hero-card-row">
+          <span class="hero-card-service">🤝 Used Car Package</span>
+          <span class="hero-card-price">Rs 8,000–20,000</span>
+        </div>
+      </div>
+      <div class="trust-row">
+        <div class="trust-badge">
+          <div class="trust-badge-icon">📋</div>
+          <div class="trust-badge-label">Trusted<br>Reports</div>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-badge-icon">🏠</div>
+          <div class="trust-badge-label">Doorstep<br>Service</div>
+        </div>
+        <div class="trust-badge">
+          <div class="trust-badge-icon">⭐</div>
+          <div class="trust-badge-label">Quality<br>Guarantee</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section id="how">
+  <div class="section-head inner">
+    <div class="section-tag">Process</div>
+    <h2 class="section-heading">Six Steps to a Spotless Car</h2>
+    <p class="section-sub">From your first message to driving away happy — we make it effortless.</p>
+  </div>
+  <div class="inner">
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-label">Call or<br>WhatsApp Us</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-label">Choose<br>Your Service</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-label">We Come<br>to Your Door</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-label">Service Done<br>On the Spot</div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-label">Pay Online<br>or Cash</div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-label">Drive Away<br>Happy ✓</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div class="section-head inner">
+    <div class="section-tag">What We Offer</div>
+    <h2 class="section-heading">Complete Car Care, At Your Doorstep</h2>
+    <p class="section-sub">Every service is performed by trained professionals with premium products.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon-wrap">🧼</div>
+      <h3>Complete Car Wash</h3>
+      <p class="service-desc">Interior + Exterior + Engine Bay + Door Jambs + Tires. Every surface cleaned to perfection.</p>
+      <div class="service-price">Rs 800 – 1,500 <span>per vehicle</span></div>
+      <a href="https://wa.me/923001234567?text=I%20want%20to%20book%20a%20COMPLETE%20CAR%20WASH" class="btn-book" target="_blank">Book Now →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon-wrap">✨</div>
+      <h3>Detailing (Deep Clean)</h3>
+      <p class="service-desc">Clay bar treatment, polishing, wax coating & odor removal. Restores your car to showroom condition.</p>
+      <div class="service-price">Rs 5,000 – 15,000 <span>per vehicle</span></div>
+      <a href="https://wa.me/923001234567?text=I%20want%20to%20book%20DETAILING%20service" class="btn-book" target="_blank">Book Now →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon-wrap">🛡️</div>
+      <h3>PPF – Paint Protection Film</h3>
+      <p class="service-desc">Military-grade film that shields your paint from scratches, stone chips, UV rays & bird droppings.</p>
+      <div class="service-price">Rs 30,000 – 80,000 <span>per vehicle</span></div>
+      <a href="https://wa.me/923001234567?text=I%20want%20to%20book%20PPF%20service" class="btn-book" target="_blank">Book Now →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon-wrap">🔧</div>
+      <h3>Car Inspection</h3>
+      <p class="service-desc">Full diagnostic — engine, body, suspension, brakes, electricals & documentation. Trusted report provided.</p>
+      <div class="service-price">Rs 1,000 – 2,000 <span>per inspection</span></div>
+      <a href="https://wa.me/923001234567?text=I%20want%20to%20book%20CAR%20INSPECTION" class="btn-book" target="_blank">Book Now →</a>
+    </div>
+    <div class="service-card">
+      <div class="service-icon-wrap">🤝</div>
+      <h3>Used Car Package</h3>
+      <p class="service-desc">Inspection + Detailing + Wash — the complete bundle for buyers & sellers making confident decisions.</p>
+      <div class="service-price">Rs 8,000 – 20,000 <span>per vehicle</span></div>
+      <a href="https://wa.me/923001234567?text=I%20want%20the%20USED%20CAR%20PACKAGE" class="btn-book" target="_blank">Book Now →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY US ── -->
+<section id="why">
+  <div class="section-head inner">
+    <div class="section-tag" style="color: var(--gold-light);">Why Choose Us</div>
+    <h2 class="section-heading">The Standard You Deserve</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,0.55);">We built One Stop Car Care around one principle: make car care completely stress-free.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <span class="why-icon">🏠</span>
+      <h3>Doorstep Service</h3>
+      <p>We bring all equipment to your home or office. You never need to visit a workshop again.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">📋</span>
+      <h3>Trusted Inspection Reports</h3>
+      <p>Detailed written reports with every inspection — perfect for used car buyers and sellers.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🔄</span>
+      <h3>Free Redo Guarantee</h3>
+      <p>Not satisfied? We come back and redo the job at absolutely no extra charge.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">💰</span>
+      <h3>Fair, Transparent Pricing</h3>
+      <p>No hidden charges, no surprise add-ons. The price you're quoted is the price you pay.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">⚡</span>
+      <h3>30-Minute Response</h3>
+      <p>Send us a WhatsApp and our team confirms your booking within 30 minutes.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🏆</span>
+      <h3>Trained Professionals</h3>
+      <p>Every technician is trained, vetted and equipped with professional-grade tools and products.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── BOOKING ── -->
+<section id="booking">
+  <div class="booking-layout">
+    <div class="booking-info">
+      <div class="section-tag">Get In Touch</div>
+      <h2>Book Your<br>Service Today</h2>
+      <p>Fill out the form and we'll confirm your booking within 30 minutes. Or reach us directly on WhatsApp for an even faster response.</p>
+
+      <div class="booking-contact-item">
+        <div class="bci-icon">📱</div>
+        <div>
+          <div class="bci-label">WhatsApp / Call</div>
+          <div class="bci-value">0300-1234567</div>
+        </div>
+      </div>
+      <div class="booking-contact-item">
+        <div class="bci-icon">📧</div>
+        <div>
+          <div class="bci-label">Email</div>
+          <div class="bci-value">info@onestopcarcare.pk</div>
+        </div>
+      </div>
+      <div class="booking-contact-item">
+        <div class="bci-icon">📍</div>
+        <div>
+          <div class="bci-label">Service Area</div>
+          <div class="bci-value">Rawalpindi & Islamabad</div>
+        </div>
+      </div>
+      <div class="booking-contact-item">
+        <div class="bci-icon">🕐</div>
+        <div>
+          <div class="bci-label">Working Hours</div>
+          <div class="bci-value">Mon–Sat, 8 AM – 8 PM</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="booking-form-wrap">
+      <div style="margin-bottom:28px;">
+        <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--green-dark); margin-bottom:6px;">Request a Booking</h3>
+        <p style="font-size:0.82rem; color:var(--text-muted);">We'll contact you within 30 minutes to confirm.</p>
+      </div>
+      <div class="form-row">
+        <div class="fg">
+          <label>Full Name *</label>
+          <input type="text" id="f-name" placeholder="Muhammad Afzal" />
+        </div>
+        <div class="fg">
+          <label>WhatsApp Number *</label>
+          <input type="tel" id="f-phone" placeholder="0300 1234567" />
+        </div>
+      </div>
+      <div class="fg">
+        <label>Car Model</label>
+        <input type="text" id="f-car" placeholder="e.g., Honda Civic 2020" />
+      </div>
+      <div class="fg">
+        <label>Service Needed *</label>
+        <select id="f-service">
+          <option value="">Select a service…</option>
+          <option value="Complete Car Wash">Complete Car Wash (Rs 800–1,500)</option>
+          <option value="Detailing">Detailing / Deep Clean (Rs 5,000–15,000)</option>
+          <option value="PPF">PPF – Paint Protection Film (Rs 30,000–80,000)</option>
+          <option value="Car Inspection">Car Inspection (Rs 1,000–2,000)</option>
+          <option value="Used Car Package">Used Car Package (Rs 8,000–20,000)</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Your Address</label>
+        <textarea id="f-address" placeholder="Your home or office address for doorstep service"></textarea>
+      </div>
+      <div class="fg">
+        <label>Preferred Date &amp; Time</label>
+        <input type="text" id="f-time" placeholder="e.g., Tomorrow 10 AM" />
+      </div>
+      <button class="btn-submit" onclick="submitBooking()">Submit Booking Request</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <svg width="32" height="37" viewBox="0 0 38 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 2L4 8v14c0 9.4 6.4 18.2 15 20.8C27.6 40.2 34 31.4 34 22V8L19 2z" fill="#2D6A4F" stroke="#C9A84C" stroke-width="1.5"/>
+          <path d="M12 22l5 5 9-10" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:white;font-weight:700;">One Stop Car Care</div>
+          <div style="font-size:0.6rem;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;">Inspect · Protect · Detail</div>
+        </div>
+      </div>
+      <p>Professional doorstep car care for Rawalpindi &amp; Islamabad. Trusted inspection reports, premium detailing, and paint protection — all at your convenience.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Complete Car Wash</a></li>
+        <li><a href="#services">Detailing</a></li>
+        <li><a href="#services">PPF</a></li>
+        <li><a href="#services">Car Inspection</a></li>
+        <li><a href="#services">Used Car Package</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#why">Why Choose Us</a></li>
+        <li><a href="#booking">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="https://wa.me/923001234567">WhatsApp: 0300-1234567</a></li>
+        <li><a href="mailto:info@onestopcarcare.pk">info@onestopcarcare.pk</a></li>
+        <li><a href="#">Rawalpindi &amp; Islamabad</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="footer-divider" />
+
+  <div class="footer-bottom">
+    <p>© 2026 One Stop Car Care. All rights reserved.</p>
+    <p>Muhammad Afzal · Ayesha Bibi · Hafsa Kanwal Awan · Muhammad Abdullah Saifal</p>
+  </div>
+</footer>
+
+<!-- WhatsApp float button -->
+<a href="https://wa.me/923001234567?text=Hello%20One%20Stop%20Car%20Care%2C%20I%20want%20to%20book%20a%20service" class="wa-float" target="_blank" title="Chat on WhatsApp">💬</a>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  function submitBooking() {
+    const name    = document.getElementById('f-name').value.trim();
+    const phone   = document.getElementById('f-phone').value.trim();
+    const car     = document.getElementById('f-car').value.trim();
+    const service = document.getElementById('f-service').value;
+    const address = document.getElementById('f-address').value.trim();
+    const time    = document.getElementById('f-time').value.trim();
+
+    if (!name || !phone) {
+      showToast('⚠️ Please enter your name and phone number.');
+      return;
+    }
+    if (!service) {
+      showToast('⚠️ Please select a service.');
+      return;
+    }
+
+    // Build WhatsApp message
+    const msg = encodeURIComponent(
+      `*New Booking Request*\n\nName: ${name}\nPhone: ${phone}\nCar: ${car || 'Not specified'}\nService: ${service}\nAddress: ${address || 'Not specified'}\nTime: ${time || 'Not specified'}`
+    );
+    window.open(`https://wa.me/923001234567?text=${msg}`, '_blank');
+    showToast('✅ Redirecting to WhatsApp — your booking is ready to send!');
+
+    document.getElementById('f-name').value = '';
+    document.getElementById('f-phone').value = '';
+    document.getElementById('f-car').value = '';
+    document.getElementById('f-service').value = '';
+    document.getElementById('f-address').value = '';
+    document.getElementById('f-time').value = '';
+  }
+
+  // Smooth active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--gold)' : '';
+    });
+  });
+</script>
+</body>
+</html>
