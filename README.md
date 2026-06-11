@@ -63,29 +63,16 @@ Live Preview: **https://mafzalkalwardev.github.io/one-stop-car-care-website/**
 
 
 
-Example (optional):
-- ![Hero Screenshot](screenshots/hero.png)
-- ![Services Screenshot](screenshots/services.png)
-- ![Booking Screenshot](screenshots/booking.png)
+Example:
+- ![Hero Screenshot] ![alt text](image-4.png)
+- ![Services Screenshot]![alt text](image-5.png)
+- ![Booking Screenshot]![alt text](image-6.png)
 ## ▶️ Run Locally
 
 Since this is a static site (single-page HTML):
 
 1. Open `index.html` in your browser.
 2. Or use any static server (optional).
-
----
-
-## 🌐 Deploy on GitHub Pages
-
-### Option A (Recommended): Serve from root
-1. Create a GitHub repo and upload this folder.
-2. Go to **Settings → Pages**.
-3. Set **Build and deployment** to **Deploy from a branch**.
-4. Select the branch and set the folder to **/ (root)**.
-5. Save.
-
-> After a minute or two, GitHub Pages will provide your live URL.
 
 ---
 
