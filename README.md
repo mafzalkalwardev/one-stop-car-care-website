@@ -1,4 +1,40 @@
-# One Stop Car Care 🚗✨
+<div align="center">
+
+# 🚀 One Stop Car Care Website
+
+**Single-file static website (HTML/CSS/JS) for One Stop Car Care. Mobile-first layout, responsive sections, WhatsApp booking flow with prefilled messages, and deployable GitHub Pages setup.**
+
+Documented · MIT licensed · Maintained
+
+![HTML5](https://img.shields.io/badge/HTML5-Web-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
+[![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen?style=for-the-badge)](CONTRIBUTING.md)
+
+[Features](#-features) · [Quick Start](#-quick-start) · [Screenshots](#-screenshots) · [Contributing](CONTRIBUTING.md)
+
+</div>
+
+---
+
+## 🖼 Screenshots
+
+![One Stop Car Care Website screenshot](docs/screenshots/placeholder.svg)
+
+*Replace `docs/screenshots/placeholder.svg` with real app screenshots.*
+
+---
+
+## 🐍 Contribution graph
+
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mafzalkalwardev/one-stop-car-care-website/output/snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/mafzalkalwardev/one-stop-car-care-website/output/snake.svg" />
+  <img alt="Contribution snake" src="https://raw.githubusercontent.com/mafzalkalwardev/one-stop-car-care-website/output/snake.svg" />
+</picture>
+
+
+---
 
 ![One Stop Car Care](https://img.shields.io/badge/Car%20Care-Doorstep%20Service-brightgreen) ![Location](https://img.shields.io/badge/Rawalpindi%20%26%20Islamabad-Pakistan-blue)
 
