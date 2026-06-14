@@ -10,29 +10,17 @@ Documented · MIT licensed · Maintained
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 [![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen?style=for-the-badge)](CONTRIBUTING.md)
 
-[Features](#-features) · [Quick Start](#-quick-start) · [Screenshots](#-screenshots) · [Contributing](CONTRIBUTING.md)
-
 </div>
 
 ---
 
-## 🖼 Screenshots
-
-![One Stop Car Care Website screenshot](docs/screenshots/placeholder.svg)
-
-*Replace `docs/screenshots/placeholder.svg` with real app screenshots.*
-
----
-
 ## 🐍 Contribution graph
-
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mafzalkalwardev/one-stop-car-care-website/output/snake-dark.svg" />
   <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/mafzalkalwardev/one-stop-car-care-website/output/snake.svg" />
   <img alt="Contribution snake" src="https://raw.githubusercontent.com/mafzalkalwardev/one-stop-car-care-website/output/snake.svg" />
 </picture>
-
 
 ---
 
@@ -86,18 +74,12 @@ On the website, click **“Book on WhatsApp”** to send your request with servi
 
 ---
 
-## 🖼️ Demo / Screenshots
-
-Live Preview: **https://mafzalkalwardev.github.io/one-stop-car-care-website/**
-
 ### Key Screens
 
 - 🏠 Hero / Landing Section (Doorstep car care headline)
 - ✅ Services Cards (Wash, Detailing, PPF, Inspection, Used Car Package)
 - 🧭 How-It-Works (6-step process)
 - 📅 Booking Form (WhatsApp prefilled request flow)
-
-
 
 Example:
 - ![Hero Screenshot] ![alt text](image-4.png)
@@ -124,7 +106,3 @@ Since this is a static site (single-page HTML):
 
 - This project is front-end only (HTML/CSS/JS in `index.html`).
 - WhatsApp messages are generated from the booking form automatically.
-
-## Screenshots
-
-![one-stop-car-care-website dashboard](docs/screenshots/app.png)
