@@ -125,3 +125,7 @@ Since this is a static site (single-page HTML):
 - This project is front-end only (HTML/CSS/JS in `index.html`).
 - WhatsApp messages are generated from the booking form automatically.
 
+## Screenshots
+
+![one-stop-car-care-website dashboard](docs/screenshots/app.png)
+
