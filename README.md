@@ -128,4 +128,3 @@ Since this is a static site (single-page HTML):
 ## Screenshots
 
 ![one-stop-car-care-website dashboard](docs/screenshots/app.png)
-
